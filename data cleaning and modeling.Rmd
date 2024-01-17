@@ -1,5 +1,5 @@
 ---
-title: "data cleaning and modeling"
+title: "data cleaning"
 author: "Mckay Flake"
 output:
   html_document:
@@ -65,28 +65,3 @@ target <- 8
 seedVal <- 500
 metrics_list <- c("MAE","RMSE","MAPE","RMSPE","RAE","RRSE","R2")
 
-```
-
-
-#Code chunk 2
-```{r Build and evaluate neural network models for numeric prediction tasks}
-
-#i. Build an MLP model on MultilayerPerceptron()’s default setting on the training set. 
-
-MLP <- make_Weka_classifier("weka/classifiers/functions/MultilayerPerceptron")
-
-
-model_a <- MLP(NA_Sales ~ .,data = train_set)
-summary(model_a)
-
-
-
-#Evaluate the model performance on the training set and testing set.
-predicted_train <- predict(model_a, train_set)
-predicted_test <- predict(model_a, test_set)
-
-mmetric(test_set$NA_Sales,predicted_test,metrics_list)
-mmetric(train_set$NA_Sales,predicted_train,metrics_list)
-
-
-```
